@@ -114,7 +114,7 @@ def parse_handshake_datetime_str(datetime_str: str) -> datetime:
 
 def write_to_csv(filepath: str, data: List[dict]):
     header = data[0].keys()
-    with open(filepath, 'w') as file:
+    with open(filepath, 'w', encoding='utf-8') as file:
         dict_writer = csv.DictWriter(file, header, lineterminator='\n')
         dict_writer.writeheader()
         dict_writer.writerows(data)

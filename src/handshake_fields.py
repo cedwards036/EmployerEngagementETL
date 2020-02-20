@@ -19,3 +19,11 @@ class InterviewFields:
     EMPLOYER = 'Employer Name'
     STUDENT_ID = 'Students (Checked In) ID'
     DATE_LIST = 'Interview Schedule Dates Date List'
+
+
+class JobFields:
+    EMPLOYER_ID = 'Employer ID'
+    ID = 'Jobs ID'
+    TITLE = 'Jobs Title'
+    POSTING_CREATED_AT_TIME = 'Postings Created At Time'
+    TYPE = 'Job Type Name'
