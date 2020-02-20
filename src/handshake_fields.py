@@ -14,7 +14,8 @@ class CareerFairFields:
 
 class InterviewFields:
     ID = 'Interview Schedules ID'
-    DATE_TIME = 'Interview Schedule Checkins Checked In At Time'
+    EMPLOYER_ID = 'Employer ID'
+    EMPLOYER_NAME = 'Employer Name'
     DATE_LIST = 'Interview Schedule Dates Date List'
 
 

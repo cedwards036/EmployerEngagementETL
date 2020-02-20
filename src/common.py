@@ -115,8 +115,8 @@ def parse_handshake_datetime_str(datetime_str: str) -> datetime:
     return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
 
 
-def write_lists_of_dicts_to_csv(filepath, *args: List[dict]):
-    combined_lists = list(itertools.chain.from_iterable(args))
+def write_lists_of_dicts_to_csv(filepath, lists: List[List[dict]]):
+    combined_lists = list(itertools.chain.from_iterable(lists))
     write_to_csv(filepath, combined_lists)
 
 
