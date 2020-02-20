@@ -1,4 +1,5 @@
 import csv
+import itertools
 import json
 import os
 from datetime import datetime
@@ -90,10 +91,12 @@ class InsightsReport:
         return read_and_delete_json(downloaded_filepath)
 
 
-def run_etl(browser: HandshakeBrowser, insights_report: InsightsReport, transform_func: Callable[[dict], dict]) -> List[dict]:
-    raw_data = insights_report.extract_data(browser)
-    return [transform_func(row) for row in raw_data]
+def make_etl_func(insights_report: InsightsReport, transform_func: Callable[[dict], dict]) -> Callable[[HandshakeBrowser], List[dict]]:
+    def etl_func(browser: HandshakeBrowser) -> List[dict]:
+        raw_data = insights_report.extract_data(browser)
+        return [transform_func(row) for row in raw_data]
 
+    return etl_func
 
 def read_and_delete_json(filepath: str) -> List[dict]:
     """
@@ -110,6 +113,11 @@ def read_and_delete_json(filepath: str) -> List[dict]:
 
 def parse_handshake_datetime_str(datetime_str: str) -> datetime:
     return datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
+
+
+def write_lists_of_dicts_to_csv(filepath, *args: List[dict]):
+    combined_lists = list(itertools.chain.from_iterable(args))
+    write_to_csv(filepath, combined_lists)
 
 
 def write_to_csv(filepath: str, data: List[dict]):

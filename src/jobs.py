@@ -1,4 +1,4 @@
-from src.common import InsightsReport, NoInsightsDateField, parse_handshake_datetime_str
+from src.common import InsightsReport, NoInsightsDateField, parse_handshake_datetime_str, make_etl_func
 from src.handshake_fields import JobFields
 
 JOBS_INSIGHTS_REPORT = InsightsReport(
@@ -23,3 +23,6 @@ def get_engagement_type(job: dict):
         return 'internship'
     else:
         return 'job'
+
+
+run_jobs_etl = make_etl_func(JOBS_INSIGHTS_REPORT, transform_job)

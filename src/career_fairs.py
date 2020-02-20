@@ -1,4 +1,4 @@
-from src.common import InsightsReport, NoInsightsDateField, parse_handshake_datetime_str
+from src.common import InsightsReport, NoInsightsDateField, parse_handshake_datetime_str, make_etl_func
 from src.handshake_fields import CareerFairFields
 
 CAREER_FAIRS_INSIGHTS_REPORT = InsightsReport(
@@ -17,3 +17,6 @@ def transform_career_fair(career_fair: dict):
         'engagement_name': career_fair[CareerFairFields.NAME],
         'datetime': parse_handshake_datetime_str(career_fair[CareerFairFields.START_DATE_TIME])
     }
+
+
+run_career_fairs_etl = make_etl_func(CAREER_FAIRS_INSIGHTS_REPORT, transform_career_fair)

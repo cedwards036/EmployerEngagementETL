@@ -1,4 +1,4 @@
-from src.common import InsightsReport, NoInsightsDateField, parse_handshake_datetime_str
+from src.common import InsightsReport, NoInsightsDateField, parse_handshake_datetime_str, make_etl_func
 from src.handshake_fields import EventFields
 
 EVENTS_INSIGHTS_REPORT = InsightsReport(
@@ -17,3 +17,6 @@ def transform_event(event: dict):
         'engagement_name': event[EventFields.NAME],
         'datetime': parse_handshake_datetime_str(event[EventFields.START_DATE_TIME])
     }
+
+
+run_events_etl = make_etl_func(EVENTS_INSIGHTS_REPORT, transform_event)
