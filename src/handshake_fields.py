@@ -25,3 +25,9 @@ class JobFields:
     TITLE = 'Jobs Title'
     POSTING_CREATED_AT_TIME = 'Postings Created At Time'
     TYPE = 'Job Type Name'
+
+
+class EmployerFields:
+    ID = 'Employers ID'
+    NAME = 'Employers Name'
+    INDUSTRY = 'Industry Name'
