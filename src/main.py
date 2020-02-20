@@ -1,7 +1,5 @@
-from src.career_fairs import run_career_fairs_etl
 from src.common import BrowsingSession, write_lists_of_dicts_to_csv, CONFIG
-from src.events import run_events_etl
-from src.jobs import run_jobs_etl
+from src.etl_processes import run_events_etl, run_jobs_etl, run_career_fairs_etl
 
 if __name__ == '__main__':
     with BrowsingSession() as browser:

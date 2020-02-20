@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
 
-from src.events import transform_event
+from src.etl_processes.events import transform_event
 from src.handshake_fields import EventFields
 
 

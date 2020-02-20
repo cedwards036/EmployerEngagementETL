@@ -1,8 +1,8 @@
 import unittest
 from datetime import datetime
 
+from src.etl_processes.jobs import transform_job
 from src.handshake_fields import JobFields
-from src.jobs import transform_job
 
 
 class TestTransformJob(unittest.TestCase):

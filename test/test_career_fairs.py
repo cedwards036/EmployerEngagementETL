@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
 
-from src.career_fairs import transform_career_fair
+from src.etl_processes.career_fairs import transform_career_fair
 from src.handshake_fields import CareerFairFields
 
 
