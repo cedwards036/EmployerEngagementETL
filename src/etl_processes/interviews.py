@@ -9,18 +9,23 @@ INTERVIEWS_INSIGHTS_REPORT = InsightsReport(
     date_field=NoInsightsDateField()
 )
 
+ENGAGEMENT_TYPE = 'interview'
+
 
 def transform_interview(interview: dict) -> dict:
-    ENGAGEMENT_TYPE = 'interview'
     dates = parse_date_list_str(interview[InterviewFields.DATE_LIST])
     return {
         'employer_id': interview[InterviewFields.EMPLOYER_ID],
         'engagement_type': ENGAGEMENT_TYPE,
         'handshake_id': interview[InterviewFields.ID],
-        'engagement_id': f'{ENGAGEMENT_TYPE}_{interview[InterviewFields.ID]}',
+        'engagement_id': make_engagement_id(interview),
         'engagement_name': make_engagement_name(interview[InterviewFields.EMPLOYER_NAME], dates),
         'datetime': dates[0]
     }
+
+
+def make_engagement_id(interview: dict) -> str:
+    return f'{ENGAGEMENT_TYPE}_{interview[InterviewFields.EMPLOYER_ID]}_{interview[InterviewFields.ID]}'
 
 
 def make_engagement_name(employer: str, interview_dates: List[datetime]) -> str:

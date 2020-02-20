@@ -29,7 +29,7 @@ class TestTransformJob(unittest.TestCase):
         self.assertEqual('job', self.cleaned_job['engagement_type'])
 
     def test_makes_engagement_id(self):
-        self.assertEqual('job_847734', self.cleaned_job['engagement_id'])
+        self.assertEqual('job_6235_847734', self.cleaned_job['engagement_id'])
 
     def test_sets_correct_engagement_type_for_internship(self):
         cleaned_internship = transform_job({

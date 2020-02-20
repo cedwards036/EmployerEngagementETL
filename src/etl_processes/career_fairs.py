@@ -6,17 +6,21 @@ CAREER_FAIRS_INSIGHTS_REPORT = InsightsReport(
     date_field=NoInsightsDateField()
 )
 
+ENGAGEMENT_TYPE = 'career_fair'
+
 
 def transform_career_fair(career_fair: dict):
-    ENGAGEMENT_TYPE = 'career_fair'
     return {
         'employer_id': career_fair[CareerFairFields.EMPLOYER_ID],
         'engagement_type': ENGAGEMENT_TYPE,
         'handshake_id': career_fair[CareerFairFields.ID],
-        'engagement_id': f'{ENGAGEMENT_TYPE}_{career_fair[CareerFairFields.ID]}',
+        'engagement_id': make_engagement_id(career_fair),
         'engagement_name': career_fair[CareerFairFields.NAME],
         'datetime': parse_handshake_datetime_str(career_fair[CareerFairFields.START_DATE_TIME])
     }
 
+
+def make_engagement_id(career_fair: dict) -> str:
+    return f'{ENGAGEMENT_TYPE}_{career_fair[CareerFairFields.EMPLOYER_ID]}_{career_fair[CareerFairFields.ID]}'
 
 run_career_fairs_etl = make_etl_func(CAREER_FAIRS_INSIGHTS_REPORT, transform_career_fair)

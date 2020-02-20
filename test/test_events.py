@@ -28,4 +28,4 @@ class TestTransformEvent(unittest.TestCase):
         self.assertEqual('event', self.cleaned_event['engagement_type'])
 
     def test_makes_engagement_id(self):
-        self.assertEqual('event_938093', self.cleaned_event['engagement_id'])
+        self.assertEqual('event_2892_938093', self.cleaned_event['engagement_id'])

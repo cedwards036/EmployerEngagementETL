@@ -6,17 +6,22 @@ EVENTS_INSIGHTS_REPORT = InsightsReport(
     date_field=NoInsightsDateField()
 )
 
+ENGAGEMENT_TYPE = 'event'
+
 
 def transform_event(event: dict):
-    ENGAGEMENT_TYPE = 'event'
     return {
         'employer_id': event[EventFields.EMPLOYER_ID],
         'engagement_type': ENGAGEMENT_TYPE,
         'handshake_id': event[EventFields.ID],
-        'engagement_id': f'{ENGAGEMENT_TYPE}_{event[EventFields.ID]}',
+        'engagement_id': make_engagement_id(event),
         'engagement_name': event[EventFields.NAME],
         'datetime': parse_handshake_datetime_str(event[EventFields.START_DATE_TIME])
     }
+
+
+def make_engagement_id(event: dict) -> str:
+    return f'{ENGAGEMENT_TYPE}_{event[EventFields.EMPLOYER_ID]}_{event[EventFields.ID]}'
 
 
 run_events_etl = make_etl_func(EVENTS_INSIGHTS_REPORT, transform_event)

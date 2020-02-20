@@ -12,10 +12,14 @@ def transform_job(job: dict):
         'employer_id': job[JobFields.EMPLOYER_ID],
         'engagement_type': get_engagement_type(job),
         'handshake_id': job[JobFields.ID],
-        'engagement_id': f'{get_engagement_type(job)}_{job[JobFields.ID]}',
+        'engagement_id': make_engagement_id(job),
         'engagement_name': job[JobFields.TITLE],
         'datetime': parse_handshake_datetime_str(job[JobFields.POSTING_CREATED_AT_TIME])
     }
+
+
+def make_engagement_id(job: dict) -> str:
+    return f'{get_engagement_type(job)}_{job[JobFields.EMPLOYER_ID]}_{job[JobFields.ID]}'
 
 
 def get_engagement_type(job: dict):

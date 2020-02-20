@@ -28,4 +28,4 @@ class TestTransformCareerFair(unittest.TestCase):
         self.assertEqual('career_fair', self.cleaned_career_fair['engagement_type'])
 
     def test_makes_engagement_id(self):
-        self.assertEqual('career_fair_63463452', self.cleaned_career_fair['engagement_id'])
+        self.assertEqual('career_fair_5364_63463452', self.cleaned_career_fair['engagement_id'])
